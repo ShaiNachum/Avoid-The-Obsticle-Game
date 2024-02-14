@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class GameManager {
     private static final int POINTS = 10;
+    private static final int EMPTY = 0;
+    private static final int ASTEROID = 1;
+    private static final int ASTRONAUT = 2;
     private static final int COLLISIONFINE = 50;
     private static final int ASTEROIDCOLS = 5;
     private static final int ASTEROIDSROWS = 9;//it's bigger by one from the actual size in order
@@ -14,7 +17,7 @@ public class GameManager {
     private boolean isCollision;
     private int score = 0;
     private int life;
-    private boolean[][] asteroids;
+    private int[][] asteroids;
     private boolean[] spaceships;
     private boolean[] hearts;
 
@@ -32,23 +35,24 @@ public class GameManager {
         for(int i = 0 ; i < NUMOFHEARTS ; i++)
             hearts[i] = true;
 
-        this.asteroids = new boolean[ASTEROIDSROWS][ASTEROIDCOLS];
+        this.asteroids = new int[ASTEROIDSROWS][ASTEROIDCOLS];
         for(int i = 0 ; i < ASTEROIDSROWS ; i++)
             for(int j = 0 ; j < ASTEROIDCOLS ; j++)
-                asteroids[i][j] = false;
+                asteroids[i][j] = EMPTY;
     }
+
 
     public boolean[] getSpaceships() {
         return spaceships;
     }
 
-    public boolean[][] getAsteroids() {
+    public int[][] getAsteroids() {
         return asteroids;
     }
 
     public boolean[] getHearts(){return hearts;}
 
-    private int getRandom() {
+    public int getRandom() {
         Random rnd = new Random();
         return rnd.nextInt(ASTEROIDCOLS);
     }
@@ -79,16 +83,16 @@ public class GameManager {
         int rnd = getRandom();
         for (int i = 0; i < ASTEROIDCOLS; i++) {
             if (i == rnd)
-                asteroids[0][i] = true;
+                asteroids[0][i] = ASTEROID;
             else
-                asteroids[0][i] = false;
+                asteroids[0][i] = EMPTY;
         }
         checkCollision();
         checkScore();
     }
 
     private void checkCollision(){
-        if (asteroids[ASTEROIDSROWS-1][spaceShipIndex]){
+        if (asteroids[ASTEROIDSROWS-1][spaceShipIndex] == ASTEROID){
             //from here, for unlimited life:
             if(this.life == 0){
                 this.life = 3;
@@ -105,7 +109,7 @@ public class GameManager {
     }
 
     private void checkScore(){
-        if (!asteroids[ASTEROIDSROWS-1][spaceShipIndex]) {
+        if (asteroids[ASTEROIDSROWS-1][spaceShipIndex] == EMPTY) {
             this.score += POINTS;
         }
         else{

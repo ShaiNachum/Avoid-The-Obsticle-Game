@@ -18,7 +18,9 @@ import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final int EMPTY = 0;
+    private static final int ASTEROID = 1;
+    private static final int ASTRONAUT = 2;
     private static final int ASTEROIDCOLS = 5;
     private static final int SPACESHIPSROW = 5;
     private static final int ASTEROIDSROWS = 8;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ShapeableImageView[][] main_IMG_asteroids;
     private ShapeableImageView main_BTN_right;
     private ShapeableImageView main_BTN_left;
+    private int main_IMG_astronauts;
     private GameManager gameManager;
     private static final long DELAY = 1000;
     final Handler handler = new Handler();
@@ -134,12 +137,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void updateAsteroidUI(){
-        boolean[][] asteroids = gameManager.getAsteroids();
+        int[][] asteroids = gameManager.getAsteroids();
         for (int i = 0; i < ASTEROIDSROWS; i++) {
             for (int j = 0; j < ASTEROIDCOLS; j++) {
-                if (!asteroids[i][j])
+                if (asteroids[i][j] == EMPTY)
                     main_IMG_asteroids[i][j].setVisibility(View.INVISIBLE);
-                else
+                else if(asteroids[i][j] == ASTEROID)
                     main_IMG_asteroids[i][j].setVisibility(View.VISIBLE);
             }
         }
@@ -199,5 +202,6 @@ public class MainActivity extends AppCompatActivity {
         }
         main_BTN_right = findViewById(R.id.main_BTN_right);
         main_BTN_left = findViewById(R.id.main_BTN_left);
+        main_IMG_astronauts = R.drawable.astronaut;
     }
 }
