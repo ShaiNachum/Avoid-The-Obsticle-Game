@@ -9,10 +9,10 @@ import java.util.Random;
 public class GameManager {
     private static final int POINTS = 10;
     private static final int COLLISIONFINE = 50;
-    private static final int ASTEROIDCOLS = 3;
+    private static final int ASTEROIDCOLS = 5;
     private static final int ASTEROIDSROWS = 9;//it's bigger by one from the actual size in order
     //                                           to create an option to avoid the asteroid
-    private static final int SPACESHIPSROW = 3;
+    private static final int SPACESHIPSROW = 5;
     private static final int NUMOFHEARTS = 3;
     private int spaceShipIndex;
     private boolean isCollision;

@@ -19,8 +19,8 @@ import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int ASTEROIDCOLS = 3;
-    private static final int SPACESHIPSROW = 3;
+    private static final int ASTEROIDCOLS = 5;
+    private static final int SPACESHIPSROW = 5;
     private static final int ASTEROIDSROWS = 8;
     private static final int NUMOFHEARTS = 3;
     private ShapeableImageView main_IMG_background;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rightMoveClicked() {
-        if (gameManager.getSpaceShipIndex() == 2) {
+        if (gameManager.getSpaceShipIndex() == SPACESHIPSROW-1) {
             mediumVibrate();
             moveToast();
         } else {
@@ -168,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "COLLISION!!!", Toast.LENGTH_SHORT).show();
     }
 
-
     private void findViews() {
         main_IMG_background = findViewById(R.id.main_IMG_background);
         main_IMG_hearts = new ShapeableImageView[]{
@@ -179,7 +178,9 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_spaceship = new ShapeableImageView[]{
                 findViewById(R.id.main_IMG_spaceship1),
                 findViewById(R.id.main_IMG_spaceship2),
-                findViewById(R.id.main_IMG_spaceship3)
+                findViewById(R.id.main_IMG_spaceship3),
+                findViewById(R.id.main_IMG_spaceship4),
+                findViewById(R.id.main_IMG_spaceship5)
         };
         main_LBL_score = findViewById(R.id.main_LBL_score);
         main_IMG_asteroids = new ShapeableImageView[ASTEROIDSROWS][ASTEROIDCOLS];
