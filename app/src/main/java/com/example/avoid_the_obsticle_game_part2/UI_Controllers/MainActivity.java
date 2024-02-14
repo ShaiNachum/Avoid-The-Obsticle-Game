@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ShapeableImageView[][] main_IMG_asteroids;
     private ShapeableImageView main_BTN_right;
     private ShapeableImageView main_BTN_left;
+    private int main_IMG_astronaut;
     private int main_IMG_astronauts;
     private GameManager gameManager;
     private static final long DELAY = 1000;
@@ -70,9 +71,19 @@ public class MainActivity extends AppCompatActivity {
             gameManager.clockTick();
             updateAsteroidUI();
             collisionCheck();
+            astronautPick();
             updateScore();
         }
     };
+
+
+    void astronautPick(){
+        if(gameManager.isAstronautPicked()) {
+            smallVibrate();
+            astronautToast();
+            gameManager.setAstronautPicked(false);
+        }
+    }
 
     void collisionCheck() {
         if(gameManager.getCollision()) {
@@ -136,14 +147,21 @@ public class MainActivity extends AppCompatActivity {
                 main_IMG_spaceship[i].setVisibility(View.VISIBLE);
         }
     }
+
     private void updateAsteroidUI(){
         int[][] asteroids = gameManager.getAsteroids();
         for (int i = 0; i < ASTEROIDSROWS; i++) {
             for (int j = 0; j < ASTEROIDCOLS; j++) {
                 if (asteroids[i][j] == EMPTY)
                     main_IMG_asteroids[i][j].setVisibility(View.INVISIBLE);
-                else if(asteroids[i][j] == ASTEROID)
+                else if(asteroids[i][j] == ASTEROID) {
+                    main_IMG_asteroids[i][j].setImageResource(main_IMG_astronaut);
                     main_IMG_asteroids[i][j].setVisibility(View.VISIBLE);
+                }
+                else if(asteroids[i][j] == ASTRONAUT){
+                    main_IMG_asteroids[i][j].setImageResource(main_IMG_astronauts);
+                    main_IMG_asteroids[i][j].setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -169,6 +187,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void collisionToast() {
         Toast.makeText(this, "COLLISION!!!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void astronautToast() {
+        Toast.makeText(this, "+100 points!", Toast.LENGTH_SHORT).show();
     }
 
     private void findViews() {
@@ -203,5 +225,6 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_right = findViewById(R.id.main_BTN_right);
         main_BTN_left = findViewById(R.id.main_BTN_left);
         main_IMG_astronauts = R.drawable.astronaut;
+        main_IMG_astronaut = R.drawable.asteroid1;
     }
 }

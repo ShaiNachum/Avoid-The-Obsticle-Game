@@ -8,6 +8,7 @@ public class GameManager {
     private static final int ASTEROID = 1;
     private static final int ASTRONAUT = 2;
     private static final int COLLISIONFINE = 50;
+    private static final int ASTRONAUTPICK = 100;
     private static final int ASTEROIDCOLS = 5;
     private static final int ASTEROIDSROWS = 9;//it's bigger by one from the actual size in order
     //                                           to create an option to avoid the asteroid
@@ -15,11 +16,13 @@ public class GameManager {
     private static final int NUMOFHEARTS = 3;
     private int spaceShipIndex;
     private boolean isCollision;
+    private boolean isAstronautPicked;
     private int score = 0;
     private int life;
     private int[][] asteroids;
     private boolean[] spaceships;
     private boolean[] hearts;
+
 
     public GameManager(int life) {
         this.life = life;
@@ -27,6 +30,8 @@ public class GameManager {
         this.spaceShipIndex = 1;
 
         this.isCollision = false;
+
+        this.isAstronautPicked = false;
 
         this.spaceships = new boolean[SPACESHIPSROW];
         spaceships[1] = true;
@@ -42,6 +47,14 @@ public class GameManager {
     }
 
 
+    public boolean isAstronautPicked() {
+        return isAstronautPicked;
+    }
+
+    public void setAstronautPicked(boolean astronautPicked) {
+        isAstronautPicked = astronautPicked;
+    }
+
     public boolean[] getSpaceships() {
         return spaceships;
     }
@@ -52,9 +65,14 @@ public class GameManager {
 
     public boolean[] getHearts(){return hearts;}
 
-    public int getRandom() {
+    private int getRandom() {
         Random rnd = new Random();
         return rnd.nextInt(ASTEROIDCOLS);
+    }
+
+    private boolean getBooleanRandom() {
+        Random rnd = new Random();
+        return rnd.nextBoolean();
     }
 
     public int getSpaceShipIndex() {
@@ -80,14 +98,21 @@ public class GameManager {
             }
         }
 
-        int rnd = getRandom();
+        int rnd1 = getRandom();
+        int rnd2 = getRandom();
+        boolean boolRnd = getBooleanRandom();
+
         for (int i = 0; i < ASTEROIDCOLS; i++) {
-            if (i == rnd)
+            if (i == rnd1)
                 asteroids[0][i] = ASTEROID;
+            else if(i == rnd2 && boolRnd)
+                asteroids[0][i] = ASTRONAUT;
             else
                 asteroids[0][i] = EMPTY;
         }
+
         checkCollision();
+        checkAstronautPick();
         checkScore();
     }
 
@@ -108,16 +133,26 @@ public class GameManager {
             this.isCollision = false;
     }
 
+    private void checkAstronautPick(){
+        if (asteroids[ASTEROIDSROWS-1][spaceShipIndex] == ASTRONAUT)
+            this.isAstronautPicked = true;
+        else
+            this.isAstronautPicked = false;
+    }
+
     private void checkScore(){
         if (asteroids[ASTEROIDSROWS-1][spaceShipIndex] == EMPTY) {
             this.score += POINTS;
         }
-        else{
+        else if(this.isAstronautPicked)
+            this.score += ASTRONAUTPICK;
+        else {
             if(this.score >= 50)
                 this.score -= COLLISIONFINE;
             else
                 this.score = 0;
         }
+
     }
 
     public int getScore(){
