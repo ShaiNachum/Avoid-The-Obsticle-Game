@@ -1,4 +1,4 @@
-package com.example.avoid_the_obsticle_game.UI_Controllers;
+package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +11,8 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.example.avoid_the_obsticle_game.Logic.GameManager;
-import com.example.avoid_the_obsticle_game.R;
+import com.example.avoid_the_obsticle_game_part2.Logic.GameManager;
+import com.example.avoid_the_obsticle_game_part2.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;

@@ -1,8 +1,4 @@
-package com.example.avoid_the_obsticle_game.Logic;
-
-import android.view.View;
-
-import com.google.android.material.imageview.ShapeableImageView;
+package com.example.avoid_the_obsticle_game_part2.Logic;
 
 import java.util.Random;
 

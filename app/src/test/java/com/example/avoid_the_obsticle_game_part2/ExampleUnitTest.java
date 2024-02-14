@@ -1,4 +1,4 @@
-package com.example.avoid_the_obsticle_game;
+package com.example.avoid_the_obsticle_game_part2;
 
 import org.junit.Test;
 

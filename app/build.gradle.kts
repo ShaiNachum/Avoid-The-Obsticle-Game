@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.avoid_the_obsticle_game"
+    namespace = "com.example.avoid_the_obsticle_game_part2"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.avoid_the_obsticle_game"
+        applicationId = "com.example.avoid_the_obsticle_game_part2"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

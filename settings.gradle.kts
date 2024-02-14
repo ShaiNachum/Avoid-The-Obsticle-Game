@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "avoid_the_obsticle_game"
+rootProject.name = "avoid_the_obsticle_game_part2"
 include(":app")
  
