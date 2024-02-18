@@ -64,6 +64,20 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_left.setOnClickListener(View -> leftMoveClicked());
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getApplicationContext(), "onStop called", Toast.LENGTH_LONG).show();
+        stopTimer();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(getApplicationContext(), "onRestart called", Toast.LENGTH_LONG).show();
+        startTimer();
+    }
+
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
