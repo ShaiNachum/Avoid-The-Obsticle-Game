@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.avoid_the_obsticle_game_part2.Logic.GameManager;
 import com.example.avoid_the_obsticle_game_part2.R;
+import com.example.avoid_the_obsticle_game_part2.Utilities.SignalManager;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int SPACESHIPSROW = 5;
     private static final int ASTEROIDSROWS = 8;
     private static final int NUMOFHEARTS = 3;
+    private static final int SMALL_VIBRATE = 50;
+    private static final int MEDIUM_VIBRATE = 200;
+    private static final int LONG_VIBRATE = 500;
     private ShapeableImageView main_IMG_background;
     private MaterialTextView main_LBL_score;
     private ShapeableImageView[] main_IMG_hearts;
@@ -67,14 +71,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Toast.makeText(getApplicationContext(), "onStop called", Toast.LENGTH_LONG).show();
         stopTimer();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Toast.makeText(getApplicationContext(), "onRestart called", Toast.LENGTH_LONG).show();
         startTimer();
     }
 
@@ -90,19 +92,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
     void astronautPick(){
         if(gameManager.isAstronautPicked()) {
-            smallVibrate();
-            astronautToast();
+            SignalManager.getInstance().vibrate(SMALL_VIBRATE);
+            SignalManager.getInstance().toast("+100 points!");
             gameManager.setAstronautPicked(false);
         }
     }
 
     void collisionCheck() {
         if(gameManager.getCollision()) {
-            longVibrate();
-            collisionToast();
+            SignalManager.getInstance().vibrate(LONG_VIBRATE);
+            SignalManager.getInstance().toast("COLLISION!!!");
             updateLives();
         }
     }
@@ -133,23 +134,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void rightMoveClicked() {
         if (gameManager.getSpaceShipIndex() == SPACESHIPSROW-1) {
-            mediumVibrate();
-            moveToast();
+            SignalManager.getInstance().vibrate(MEDIUM_VIBRATE);
+            SignalManager.getInstance().toast("Cant move anymore");
         } else {
             gameManager.rightMove();
             updateSpaceshipsUI();
-            smallVibrate();
+            SignalManager.getInstance().vibrate(SMALL_VIBRATE);
         }
     }
 
     private void leftMoveClicked() {
         if (gameManager.getSpaceShipIndex() == 0) {
-            mediumVibrate();
-            moveToast();
+            SignalManager.getInstance().vibrate(MEDIUM_VIBRATE);
+            SignalManager.getInstance().toast("Cant move anymore");
         } else {
             gameManager.leftMove();
             updateSpaceshipsUI();
-            smallVibrate();
+            SignalManager.getInstance().vibrate(SMALL_VIBRATE);
         }
     }
 
@@ -178,33 +179,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    private void smallVibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
-    }
-
-    private void mediumVibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
-    }
-
-    private void longVibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-    }
-
-    private void moveToast() {
-        Toast.makeText(this, "Cant move anymore", Toast.LENGTH_SHORT).show();
-    }
-
-    private void collisionToast() {
-        Toast.makeText(this, "COLLISION!!!", Toast.LENGTH_SHORT).show();
-    }
-
-    private void astronautToast() {
-        Toast.makeText(this, "+100 points!", Toast.LENGTH_SHORT).show();
     }
 
     private void findViews() {
