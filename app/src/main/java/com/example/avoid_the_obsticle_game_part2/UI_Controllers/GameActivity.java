@@ -3,13 +3,10 @@ package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.View;
-import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.avoid_the_obsticle_game_part2.Logic.GameManager;
 import com.example.avoid_the_obsticle_game_part2.R;
@@ -18,7 +15,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     private static final int EMPTY = 0;
     private static final int ASTEROID = 1;
     private static final int ASTRONAUT = 2;
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
 
         findViews();
 
