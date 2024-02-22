@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI_Controllers.OpeningActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/main_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/opening_LBL_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp"
+        android:ems="7"
+        android:inputType="textPersonName"
+        android:text="Name: "
+        android:textColor="@color/yellow_500"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/opening_SWC_tilt"
+        android:layout_width="235dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/opening_LBL_name"
+        android:layout_centerHorizontal="true"
+        android:text="Tilt to move"
+        android:textColor="@color/yellow_500"
+        android:textStyle="italic"
+        android:checked="false"
+        android:textSize="30dp" />
+
+    <RadioGroup
+        android:id="@+id/opening_RG_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="175dp"
+        android:layout_below="@id/opening_SWC_tilt"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <RadioButton android:id="@+id/opening_RBTN_slow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SLOW mode"
+            android:checked="true"
+            android:textStyle="italic"
+            android:textSize="30dp"
+            android:buttonTint="@color/green_500"
+            android:textColor="@color/yellow_500"
+            android:onClick="checkButton"/>
+
+        <RadioButton android:id="@+id/opening_RBTN_fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FAST mode"
+            android:checked="false"
+            android:textStyle="italic"
+            android:textSize="30dp"
+            android:textColor="@color/yellow_500"
+            android:onClick="checkButton"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/opening_BTN_apply"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/opening_RG_mode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="apply"
+        android:textSize="20sp"
+        android:textColor="@color/yellow_500"
+        android:textStyle="italic"
+        />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/opening_BTN_start"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:layout_below="@id/opening_BTN_apply"
+        app:srcCompat="@drawable/start" />
+
+
+
+</RelativeLayout>
+
