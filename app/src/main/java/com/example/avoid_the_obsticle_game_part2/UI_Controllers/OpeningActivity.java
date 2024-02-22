@@ -1,12 +1,8 @@
 package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import com.bumptech.glide.Glide;
@@ -21,14 +17,10 @@ public class OpeningActivity extends AppCompatActivity {
     private ShapeableImageView opening_BTN_start;
     private ShapeableImageView opening_BTN_leaderboard;
     private SwitchCompat opening_SWC_tilt;
-    private RadioGroup opening_RG_mode;
-    private RadioButton radioButton;
-    private Button opening_BTN_apply;
-    private boolean fastMode = false;
-    private boolean slowMode = true;
+    private SwitchCompat opening_SWC_fast;
+    private boolean fastMode;
     private boolean tiltMode;
-    private String name;
-    private int radioID;
+
 
 
     @Override
@@ -47,26 +39,24 @@ public class OpeningActivity extends AppCompatActivity {
 
         opening_BTN_leaderboard.setOnClickListener(View -> leaderBoardClicked());
 
-        this.name = opening_LBL_name.getText().toString();
-
         opening_SWC_tilt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 tiltMode =isChecked;
+
+                SignalManager.getInstance().toast("tilt: " + tiltMode);
             }
         });
 
-        opening_BTN_apply.setOnClickListener(new View.OnClickListener() {
+        opening_SWC_fast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onClick(View v) {
-                radioButton = findViewById(radioID);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                fastMode = isChecked;
 
-                if(radioButton.getText().toString().equals("opening_RBTN_fast")){
-                    fastMode = true;
-                    slowMode = false;
-                }
+                SignalManager.getInstance().toast("fast: " + fastMode);
             }
         });
+
 
         opening_BTN_start.setOnClickListener(View -> startClicked());
 
@@ -75,36 +65,24 @@ public class OpeningActivity extends AppCompatActivity {
     private void leaderBoardClicked() {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
 
+        SignalManager.getInstance().toast("leaderboard clicked");
+
     }
 
     private void startClicked() {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
+        String playerName = opening_LBL_name.getText().toString();
 
-
-
-
+        SignalManager.getInstance().toast(playerName);
 
     }
-
-    public void checkButton(View v){
-        this.radioID = opening_RG_mode.getCheckedRadioButtonId();
-        radioButton = findViewById(this.radioID);
-    }
-
-
-
-    public void setTiltMode(boolean tiltMode) {
-        this.tiltMode = tiltMode;
-    }
-
 
     private void findViews() {
         main_IMG_background = findViewById(R.id.main_IMG_background);
         opening_BTN_start = findViewById(R.id.opening_BTN_start);
         opening_LBL_name = findViewById(R.id.opening_LBL_name);
         opening_SWC_tilt = findViewById(R.id.opening_SWC_tilt);
-        opening_RG_mode = findViewById(R.id.opening_RG_mode);
-        opening_BTN_apply = findViewById(R.id.opening_BTN_apply);
+        opening_SWC_fast = findViewById(R.id.opening_SWC_fast);
         opening_BTN_leaderboard = findViewById(R.id.opening_BTN_leaderboard);
     }
 }
