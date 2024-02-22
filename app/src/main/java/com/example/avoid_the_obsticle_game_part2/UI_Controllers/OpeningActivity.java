@@ -19,6 +19,7 @@ public class OpeningActivity extends AppCompatActivity {
     private ShapeableImageView main_IMG_background;
     private EditText opening_LBL_name;
     private ShapeableImageView opening_BTN_start;
+    private ShapeableImageView opening_BTN_leaderboard;
     private SwitchCompat opening_SWC_tilt;
     private RadioGroup opening_RG_mode;
     private RadioButton radioButton;
@@ -44,6 +45,8 @@ public class OpeningActivity extends AppCompatActivity {
                 .placeholder(R.drawable.space)
                 .into(main_IMG_background);
 
+        opening_BTN_leaderboard.setOnClickListener(View -> leaderBoardClicked());
+
         this.name = opening_LBL_name.getText().toString();
 
         opening_SWC_tilt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -66,6 +69,11 @@ public class OpeningActivity extends AppCompatActivity {
         });
 
         opening_BTN_start.setOnClickListener(View -> startClicked());
+
+    }
+
+    private void leaderBoardClicked() {
+        SignalManager.getInstance().vibrate(SMALL_VIBRATE);
 
     }
 
@@ -97,5 +105,6 @@ public class OpeningActivity extends AppCompatActivity {
         opening_SWC_tilt = findViewById(R.id.opening_SWC_tilt);
         opening_RG_mode = findViewById(R.id.opening_RG_mode);
         opening_BTN_apply = findViewById(R.id.opening_BTN_apply);
+        opening_BTN_leaderboard = findViewById(R.id.opening_BTN_leaderboard);
     }
 }

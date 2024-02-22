@@ -12,12 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/opening_BTN_leaderboard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+
+        app:srcCompat="@drawable/leaderboard" />
+
     <androidx.appcompat.widget.AppCompatEditText
+        android:layout_below="@+id/opening_BTN_leaderboard"
         android:id="@+id/opening_LBL_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="25dp"
         android:ems="7"
         android:inputType="textPersonName"
         android:text="Name: "
@@ -90,7 +100,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@id/opening_BTN_apply"
         app:srcCompat="@drawable/start" />
 
