@@ -3,6 +3,7 @@ package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -37,10 +38,12 @@ public class GameActivity extends AppCompatActivity {
     private int main_IMG_astronauts;
     private GameManager gameManager;
     private static final long DELAY = 1000;
+    private static final long FAST_DELAY = 800;
     final Handler handler = new Handler();
     private boolean timerOn = false;
-
-    //private boolean isFast;
+    private boolean isFast;
+    private boolean tiltMode;
+    private String PlayerName;
 
 
     @Override
@@ -50,7 +53,13 @@ public class GameActivity extends AppCompatActivity {
 
         findViews();
 
-        gameManager = new GameManager(main_IMG_hearts.length);
+        Intent intent = getIntent();
+        this.PlayerName = intent.getStringExtra("playerName");
+        this.isFast = intent.getBooleanExtra("gameSpeed", false);
+        this.tiltMode = intent.getBooleanExtra("tiltMode", false);
+
+
+        gameManager = new GameManager(main_IMG_hearts.length, this.PlayerName);
 
         updateSpaceshipsUI();
 
@@ -60,8 +69,6 @@ public class GameActivity extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.drawable.space)
                 .into(main_IMG_background);
-
-        //new TimeTicker(() -> {}).startTimer(isFast);
 
         startTimer();
 
@@ -78,13 +85,19 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+
         startTimer();
     }
 
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            handler.postDelayed(this, DELAY);
+            if(isFast){
+                handler.postDelayed(this, FAST_DELAY);
+            }
+            else{
+                handler.postDelayed(this, DELAY);
+            }
             gameManager.clockTick();
             updateAsteroidUI();
             collisionCheck();

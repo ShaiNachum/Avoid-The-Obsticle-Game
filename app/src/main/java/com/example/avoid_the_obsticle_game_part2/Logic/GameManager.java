@@ -22,10 +22,13 @@ public class GameManager {
     private int[][] asteroids;
     private boolean[] spaceships;
     private boolean[] hearts;
+    private String name;
 
 
-    public GameManager(int life) {
+    public GameManager(int life, String name) {
         this.life = life;
+
+        this.name = name;
 
         this.spaceShipIndex = 1;
 
@@ -118,13 +121,18 @@ public class GameManager {
 
     private void checkCollision(){
         if (asteroids[ASTEROIDSROWS-1][spaceShipIndex] == ASTEROID){
-            //from here, for unlimited life:
-            if(this.life == 0){
-                this.life = 3;
-                for (int i = 0; i < NUMOFHEARTS; i++) {
-                    hearts[i] = true;
-                }
-            }//till here
+//            //from here, for unlimited life:
+//            if(this.life == 0){
+//                this.life = 3;
+//                for (int i = 0; i < NUMOFHEARTS; i++) {
+//                    hearts[i] = true;
+//                }
+//            }//till here
+
+
+
+
+
             this.isCollision = true;
             this.life--;
             hearts[NUMOFHEARTS - this.life - 1] = false;
@@ -159,11 +167,17 @@ public class GameManager {
         return score;
     }
 
-    public int getLife() {
-        return life;
-    }
 
     public boolean getCollision(){
         return this.isCollision;
     }
+
+    private void endGame(){
+
+
+    }
+
+
+
 }
+

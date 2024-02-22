@@ -57,9 +57,7 @@ public class OpeningActivity extends AppCompatActivity {
             }
         });
 
-
         opening_BTN_start.setOnClickListener(View -> startClicked());
-
     }
 
     private void leaderBoardClicked() {
@@ -72,8 +70,12 @@ public class OpeningActivity extends AppCompatActivity {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
         String playerName = opening_LBL_name.getText().toString();
 
-        SignalManager.getInstance().toast(playerName);
+        Intent intent = new Intent(OpeningActivity.this, GameActivity.class);
+        intent.putExtra("playerName", playerName);
+        intent.putExtra("gameSpeed", fastMode);
+        intent.putExtra("tiltMode", tiltMode);
 
+        startActivity(intent);
     }
 
     private void findViews() {
