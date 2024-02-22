@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.example.avoid_the_obsticle_game_part2.Logic.GameManager;
 import com.example.avoid_the_obsticle_game_part2.R;
 import com.example.avoid_the_obsticle_game_part2.Utilities.SignalManager;
+import com.example.avoid_the_obsticle_game_part2.Utilities.TimeTicker;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;
@@ -40,6 +41,8 @@ public class GameActivity extends AppCompatActivity {
     final Handler handler = new Handler();
     private boolean timerOn = false;
 
+    //private boolean isFast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,8 @@ public class GameActivity extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.drawable.space)
                 .into(main_IMG_background);
+
+        //new TimeTicker(() -> {}).startTimer(isFast);
 
         startTimer();
 

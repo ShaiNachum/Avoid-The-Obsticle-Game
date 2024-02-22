@@ -22,7 +22,6 @@ public class OpeningActivity extends AppCompatActivity {
     private boolean tiltMode;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
