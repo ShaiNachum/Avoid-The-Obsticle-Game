@@ -24,9 +24,6 @@
         android:layout_weight="1"
         android:background="@color/black"
         android:padding="20dp"
-
         />
-
-
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,10 +1,10 @@
 package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.avoid_the_obsticle_game_part2.Interfaces.Callback_BackToOpeningClicked;
 import com.example.avoid_the_obsticle_game_part2.Interfaces.Callback_highScoreClicked;
 import com.example.avoid_the_obsticle_game_part2.R;
 
@@ -27,6 +27,14 @@ public class RecordsActivity extends AppCompatActivity {
             @Override
             public void highScoreClicked(double lat, double lon) {
                 mapFragment.zoom(lat, lon);
+            }
+        });
+
+        listFragment.setBackToOpeningClicked(new Callback_BackToOpeningClicked() {
+            @Override
+            public void backToOpeningClicked() {
+                Intent intent = new Intent(RecordsActivity.this, OpeningActivity.class);
+                startActivity(intent);
             }
         });
 

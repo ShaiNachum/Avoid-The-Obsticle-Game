@@ -1,5 +1,6 @@
 package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -63,9 +64,8 @@ public class OpeningActivity extends AppCompatActivity {
 
     private void leaderBoardClicked() {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
-
-        SignalManager.getInstance().toast("leaderboard clicked");
-
+        Intent intent = new Intent(OpeningActivity.this, RecordsActivity.class);
+        startActivity(intent);
     }
 
     private void startClicked() {
