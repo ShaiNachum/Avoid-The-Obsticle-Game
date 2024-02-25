@@ -103,8 +103,17 @@ public class GameActivity extends AppCompatActivity {
             collisionCheck();
             astronautPick();
             updateScore();
+            isGameOnCheck();
         }
     };
+
+    void isGameOnCheck(){
+        if(!gameManager.getIsGameOn()){
+            stopTimer();
+            Intent intent = new Intent(GameActivity.this, RecordsActivity.class);
+            startActivity(intent);
+        }
+    }
 
     void astronautPick(){
         if(gameManager.isAstronautPicked()) {

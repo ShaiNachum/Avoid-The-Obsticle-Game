@@ -58,7 +58,6 @@ public class ListFragment extends Fragment {
             callbackBackToOpeningClicked.backToOpeningClicked();
     }
 
-
     private void itemClicked(double lat, double lon) {
         if(callbackHighScoreClicked != null)
             callbackHighScoreClicked.highScoreClicked(lat, lon);
@@ -69,6 +68,4 @@ public class ListFragment extends Fragment {
         list_LBL_send = view.findViewById(R.id.list_LBL_send);
         list_BTN_backToOpening= view.findViewById(R.id.list_BTN_backToOpening);
     }
-
-
 }

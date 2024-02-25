@@ -25,16 +25,6 @@ public class SharedPreferencesManager {
         return instance;
     }
 
-    public void putInt(String key, int value) {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(key, value);
-        editor.apply();
-    }
-
-    public int getInt(String key, int defaultValue) {
-        return sharedPref.getInt(key, defaultValue);
-    }
-
     public void putString(String key, String value) {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(key, value);

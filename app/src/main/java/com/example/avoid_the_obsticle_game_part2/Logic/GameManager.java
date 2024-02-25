@@ -1,8 +1,13 @@
 package com.example.avoid_the_obsticle_game_part2.Logic;
 
+import android.util.Log;
+import com.example.avoid_the_obsticle_game_part2.Models.Game;
+import com.example.avoid_the_obsticle_game_part2.Utilities.SharedPreferencesManager;
+import com.google.gson.Gson;
 import java.util.Random;
 
 public class GameManager {
+    public static final String RECORDSMANAGER = "RECORDSMANAGER";
     private static final int POINTS = 10;
     private static final int EMPTY = 0;
     private static final int ASTEROID = 1;
@@ -22,17 +27,22 @@ public class GameManager {
     private int[][] asteroids;
     private boolean[] spaceships;
     private boolean[] hearts;
-    private String name;
+    private String playerName;
+    private Game game;
+    private boolean isGameOn;
+    private RecordsManager fromSP;
 
 
     public GameManager(int life, String name) {
         this.life = life;
 
-        this.name = name;
+        this.playerName = name;
 
         this.spaceShipIndex = 1;
 
         this.isCollision = false;
+
+        this.isGameOn = true;
 
         this.isAstronautPicked = false;
 
@@ -47,6 +57,10 @@ public class GameManager {
         for(int i = 0 ; i < ASTEROIDSROWS ; i++)
             for(int j = 0 ; j < ASTEROIDCOLS ; j++)
                 asteroids[i][j] = EMPTY;
+
+        this.game = new Game();
+
+        this.fromSP = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(RECORDSMANAGER, ""), RecordsManager.class);
     }
 
 
@@ -114,9 +128,9 @@ public class GameManager {
                 asteroids[0][i] = EMPTY;
         }
 
-        checkCollision();
         checkAstronautPick();
         checkScore();
+        checkCollision();
     }
 
     private void checkCollision(){
@@ -129,13 +143,13 @@ public class GameManager {
 //                }
 //            }//till here
 
-
-
-
-
             this.isCollision = true;
             this.life--;
-            hearts[NUMOFHEARTS - this.life - 1] = false;
+
+            if(this.life == 0)
+                endGame();
+            else
+                hearts[NUMOFHEARTS - this.life - 1] = false;
         }
         else
             this.isCollision = false;
@@ -167,17 +181,24 @@ public class GameManager {
         return score;
     }
 
-
     public boolean getCollision(){
         return this.isCollision;
     }
 
-    private void endGame(){
-
-
+    public boolean getIsGameOn(){
+        return this.isGameOn;
     }
 
-
-
+    private void endGame(){
+        game.setScore(this.score);
+        game.setPlayerName(playerName);
+        if(fromSP == null)
+            fromSP = new RecordsManager();
+        fromSP.addGame(this.game);
+        Gson gson = new Gson();
+        String recordsManagerAsJson = gson.toJson(fromSP);
+        SharedPreferencesManager.getInstance().putString(RECORDSMANAGER,recordsManagerAsJson);
+        Log.d("recordsManager from SP: ", fromSP.toString());
+        this.isGameOn = false;
+    }
 }
-
