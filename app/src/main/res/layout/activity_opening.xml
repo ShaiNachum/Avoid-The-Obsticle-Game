@@ -20,16 +20,28 @@
         android:layout_marginTop="75dp"
         app:srcCompat="@drawable/leaderboard" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/opening_LBL_text"
+        android:layout_below="@id/opening_BTN_leaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textStyle="italic"
+        android:textSize="30dp"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/yellow_500"
+        android:layout_alignLeft="@+id/opening_LBL_name"
+        />
+
     <androidx.appcompat.widget.AppCompatEditText
-        android:layout_below="@+id/opening_BTN_leaderboard"
+        android:layout_below="@+id/opening_LBL_text"
         android:id="@+id/opening_LBL_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
         android:ems="7"
         android:inputType="textPersonName"
-        android:text="Name: "
+        android:text=""
         android:textColor="@color/yellow_500"
         android:textSize="30dp"
         android:textStyle="italic"
@@ -69,7 +81,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@id/opening_SWC_fast"
         app:srcCompat="@drawable/start" />
 

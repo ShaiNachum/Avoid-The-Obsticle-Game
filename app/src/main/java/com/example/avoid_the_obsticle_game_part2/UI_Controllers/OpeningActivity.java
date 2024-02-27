@@ -10,10 +10,12 @@ import com.bumptech.glide.Glide;
 import com.example.avoid_the_obsticle_game_part2.R;
 import com.example.avoid_the_obsticle_game_part2.Utilities.SignalManager;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.textview.MaterialTextView;
 
 public class OpeningActivity extends AppCompatActivity {
     private static final int SMALL_VIBRATE = 50;
     private ShapeableImageView main_IMG_background;
+    private MaterialTextView opening_LBL_text;
     private EditText opening_LBL_name;
     private ShapeableImageView opening_BTN_start;
     private ShapeableImageView opening_BTN_leaderboard;
@@ -21,7 +23,6 @@ public class OpeningActivity extends AppCompatActivity {
     private SwitchCompat opening_SWC_fast;
     private boolean fastMode;
     private boolean tiltMode;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class OpeningActivity extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.drawable.space)
                 .into(main_IMG_background);
+
 
         opening_BTN_leaderboard.setOnClickListener(View -> leaderBoardClicked());
 
@@ -85,5 +87,6 @@ public class OpeningActivity extends AppCompatActivity {
         opening_SWC_tilt = findViewById(R.id.opening_SWC_tilt);
         opening_SWC_fast = findViewById(R.id.opening_SWC_fast);
         opening_BTN_leaderboard = findViewById(R.id.opening_BTN_leaderboard);
+        opening_LBL_text = findViewById(R.id.opening_LBL_text);
     }
 }

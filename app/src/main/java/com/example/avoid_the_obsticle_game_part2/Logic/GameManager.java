@@ -198,7 +198,6 @@ public class GameManager {
         Gson gson = new Gson();
         String recordsManagerAsJson = gson.toJson(fromSP);
         SharedPreferencesManager.getInstance().putString(RECORDSMANAGER,recordsManagerAsJson);
-        Log.d("recordsManager from SP: ", fromSP.toString());
         this.isGameOn = false;
     }
 }
