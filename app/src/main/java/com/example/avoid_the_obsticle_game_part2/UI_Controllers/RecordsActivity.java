@@ -26,7 +26,7 @@ public class RecordsActivity extends AppCompatActivity {
         listFragment.setCallbackHighScoreClicked(new Callback_highScoreClicked() {
             @Override
             public void highScoreClicked(double lat, double lon) {
-                mapFragment.zoom(lat, lon);
+                //mapFragment.zoom(lat, lon);
             }
         });
 
@@ -41,7 +41,7 @@ public class RecordsActivity extends AppCompatActivity {
         mapFragment = new MapFragment();
 
         getSupportFragmentManager().beginTransaction().add(R.id.records_FRAME_list, listFragment).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.records_FRAME_map, mapFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.records_FRAME_map, mapFragment).commit();
 
     }
 

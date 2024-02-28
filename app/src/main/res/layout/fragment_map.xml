@@ -3,19 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI_Controllers.MapFragment"
-    android:background="@color/yellow_500"
+    tools:context=".UI_Controllers.RecordsActivity"
     >
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_FRG_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        >
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/map_LBL_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Map"
-        android:layout_centerInParent="true"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        />
+    </androidx.fragment.app.FragmentContainerView>
 
 </RelativeLayout>
+
