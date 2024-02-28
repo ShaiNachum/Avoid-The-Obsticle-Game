@@ -24,7 +24,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public GameAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
         this.games = games;
-    }
+    }//
 
     public GameAdapter setGameCallback(GameCallback gameCallback) {
         this.gameCallback = gameCallback;
