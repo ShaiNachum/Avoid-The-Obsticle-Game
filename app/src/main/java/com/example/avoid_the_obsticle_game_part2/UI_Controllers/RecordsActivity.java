@@ -45,7 +45,6 @@ public class RecordsActivity extends AppCompatActivity {
 
     }
 
-
     private void findViews() {
         records_FRAME_list = findViewById(R.id.records_FRAME_list);
         records_FRAME_map = findViewById(R.id.records_FRAME_map);

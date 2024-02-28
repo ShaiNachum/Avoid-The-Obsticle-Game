@@ -24,6 +24,7 @@ public class OpeningActivity extends AppCompatActivity {
     private boolean fastMode;
     private boolean tiltMode;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +46,6 @@ public class OpeningActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 tiltMode =isChecked;
-
-                SignalManager.getInstance().toast("tilt: " + tiltMode);
             }
         });
 
@@ -54,8 +53,6 @@ public class OpeningActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 fastMode = isChecked;
-
-                SignalManager.getInstance().toast("fast: " + fastMode);
             }
         });
 
@@ -66,6 +63,7 @@ public class OpeningActivity extends AppCompatActivity {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
         Intent intent = new Intent(OpeningActivity.this, RecordsActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     private void startClicked() {
@@ -78,6 +76,7 @@ public class OpeningActivity extends AppCompatActivity {
         intent.putExtra("tiltMode", tiltMode);
 
         startActivity(intent);
+        this.finish();
     }
 
     private void findViews() {

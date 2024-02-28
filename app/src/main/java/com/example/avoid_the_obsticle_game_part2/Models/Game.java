@@ -1,14 +1,23 @@
 package com.example.avoid_the_obsticle_game_part2.Models;
 
+import com.example.avoid_the_obsticle_game_part2.Logic.RecordsManager;
+
 import java.util.Comparator;
 
 public class Game {
     private String playerName = "";
     private int score = 0;
+    private double lat;
+    private double lon;
 
 
     public Game(){
     }
+
+    public int getPlace() {
+        return RecordsManager.getGamesArrayList().indexOf(this);
+    }
+
 
     public String getPlayerName() {
         return playerName;
@@ -16,6 +25,24 @@ public class Game {
 
     public Game setPlayerName(String playerName) {
         this.playerName = playerName;
+        return this;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public Game setLat(double lat) {
+        this.lat = lat;
+        return this;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public Game setLon(double lon) {
+        this.lon = lon;
         return this;
     }
 
@@ -42,6 +69,8 @@ public class Game {
         return "Game{" +
                 "playerName='" + playerName + '\'' +
                 ", score=" + score +
+                ", lat=" + lat +
+                ", lon=" + lon +
                 '}';
     }
 }

@@ -8,13 +8,13 @@ import java.util.Comparator;
 
 public class RecordsManager {
     private static final int ARRAY_SIZE = 10;
-    private ArrayList<Game> gamesArrayList = new ArrayList<>();
+    private static ArrayList<Game> gamesArrayList = new ArrayList<>();
 
 
     public RecordsManager() {
     }
 
-    public ArrayList<Game> getGamesArrayList() {
+    public static ArrayList<Game> getGamesArrayList() {
         return gamesArrayList;
     }
 
@@ -25,10 +25,10 @@ public class RecordsManager {
 
     public RecordsManager addGame(Game game){
         this.gamesArrayList.add(game);
-
+        
         gamesArrayList.sort((g1,g2) -> g2.compareTo(g1));
 
-        if (gamesArrayList.size() > ARRAY_SIZE + 1)
+        if (gamesArrayList.size() > ARRAY_SIZE)
             gamesArrayList.remove(ARRAY_SIZE);
 
         return this;

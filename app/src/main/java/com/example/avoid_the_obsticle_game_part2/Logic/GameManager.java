@@ -191,9 +191,11 @@ public class GameManager {
 
     private void endGame(){
         game.setScore(this.score);
-        game.setPlayerName(playerName);
+        game.setPlayerName(this.playerName);
+
         if(fromSP == null)
             fromSP = new RecordsManager();
+
         fromSP.addGame(this.game);
         Gson gson = new Gson();
         String recordsManagerAsJson = gson.toJson(fromSP);

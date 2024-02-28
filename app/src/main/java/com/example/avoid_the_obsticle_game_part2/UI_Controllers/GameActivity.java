@@ -9,9 +9,12 @@ import android.os.Handler;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.example.avoid_the_obsticle_game_part2.Interfaces.StepCallback;
 import com.example.avoid_the_obsticle_game_part2.Logic.GameManager;
 import com.example.avoid_the_obsticle_game_part2.R;
+import com.example.avoid_the_obsticle_game_part2.Utilities.CrashSound;
 import com.example.avoid_the_obsticle_game_part2.Utilities.SignalManager;
+import com.example.avoid_the_obsticle_game_part2.Utilities.StepDetector;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;
@@ -38,12 +41,14 @@ public class GameActivity extends AppCompatActivity {
     private int main_IMG_astronauts;
     private GameManager gameManager;
     private static final long DELAY = 1000;
-    private static final long FAST_DELAY = 800;
+    private static final long FAST_DELAY = 700;
     final Handler handler = new Handler();
     private boolean timerOn = false;
     private boolean isFast;
     private boolean tiltMode;
     private String PlayerName;
+    private StepDetector stepDetector;
+    private CrashSound crashSound;
 
 
     @Override
@@ -53,11 +58,19 @@ public class GameActivity extends AppCompatActivity {
 
         findViews();
 
+        //this.crashSound = new CrashSound(this);/////////////////////////////////////////////////////////////////
+
         Intent intent = getIntent();
         this.PlayerName = intent.getStringExtra("playerName");
         this.isFast = intent.getBooleanExtra("gameSpeed", false);
         this.tiltMode = intent.getBooleanExtra("tiltMode", false);
 
+        if(tiltMode)
+            initStepDetector();
+        else{
+            main_BTN_right.setOnClickListener(View -> rightMove());
+            main_BTN_left.setOnClickListener(View -> leftMove());
+        }
 
         gameManager = new GameManager(main_IMG_hearts.length, this.PlayerName);
 
@@ -71,9 +84,21 @@ public class GameActivity extends AppCompatActivity {
                 .into(main_IMG_background);
 
         startTimer();
+    }
 
-        main_BTN_right.setOnClickListener(View -> rightMoveClicked());
-        main_BTN_left.setOnClickListener(View -> leftMoveClicked());
+    private void initStepDetector() {
+        main_BTN_right.setVisibility(View.INVISIBLE);
+        main_BTN_left.setVisibility(View.INVISIBLE);
+        stepDetector = new StepDetector(this, new StepCallback() {
+            @Override
+            public void stepXRight() {
+                rightMove();
+            }
+            @Override
+            public void stepXLeft() {
+                leftMove();
+            }
+        });
     }
 
     @Override
@@ -85,8 +110,21 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-
         startTimer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(tiltMode)
+            stepDetector.stop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(tiltMode)
+            stepDetector.start();
     }
 
     Runnable runnable = new Runnable() {
@@ -112,6 +150,7 @@ public class GameActivity extends AppCompatActivity {
             stopTimer();
             Intent intent = new Intent(GameActivity.this, RecordsActivity.class);
             startActivity(intent);
+            this.finish();
         }
     }
 
@@ -127,6 +166,7 @@ public class GameActivity extends AppCompatActivity {
         if(gameManager.getCollision()) {
             SignalManager.getInstance().vibrate(LONG_VIBRATE);
             SignalManager.getInstance().toast("COLLISION!!!");
+            //crashSound.playSound();/////////////////////////////////////////////////////////////////////////
             updateLives();
         }
     }
@@ -155,7 +195,7 @@ public class GameActivity extends AppCompatActivity {
         handler.removeCallbacks(runnable);
     }
 
-    private void rightMoveClicked() {
+    private void rightMove() {
         if (gameManager.getSpaceShipIndex() == SPACESHIPSROW-1) {
             SignalManager.getInstance().vibrate(MEDIUM_VIBRATE);
             SignalManager.getInstance().toast("Cant move anymore");
@@ -166,7 +206,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void leftMoveClicked() {
+    private void leftMove() {
         if (gameManager.getSpaceShipIndex() == 0) {
             SignalManager.getInstance().vibrate(MEDIUM_VIBRATE);
             SignalManager.getInstance().toast("Cant move anymore");

@@ -5,47 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI_Controllers.ListFragment"
-    android:background="@color/green_500">
-
+    android:background="@drawable/space"
+    >
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/list_LBL_title"
+        android:id="@+id/list_LBL_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fragment #1"
-        android:layout_centerInParent="true"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/list_LBL_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="click"
+        android:text="TOP 10"
+        android:textStyle="italic"
+        android:textSize="50dp"
         android:layout_marginTop="@dimen/margin_default"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/list_LBL_title"
+        android:textColor="@color/yellow_500"
         />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/list_BTN_backToOpening"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
         android:layout_centerInParent="true"
         android:layout_alignParentBottom="true"
         app:srcCompat="@drawable/home"
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_LST_games"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-
+        android:layout_below="@+id/list_LBL_text"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_above="@+id/list_BTN_backToOpening"
         />
 
 
