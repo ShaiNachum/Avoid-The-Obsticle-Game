@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,6 +77,7 @@ public class OpeningActivity extends AppCompatActivity {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             permissionsManager.setLastLocation();
             permissionsManager.checkSettingsAndStartLocationUpdates();
+
         }else{
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
@@ -97,7 +99,17 @@ public class OpeningActivity extends AppCompatActivity {
     private void startClicked() {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
         String playerName = opening_LBL_name.getText().toString();
+
+
         location = permissionsManager.getLast_location();
+
+        if(location == null) {
+            location = new Location("");
+            location.setLatitude(40.730610);
+            location.setLongitude(-73.935242);
+        }
+
+        Log.d("a123", location + "");
 
         Intent intent = new Intent(OpeningActivity.this, GameActivity.class);
         intent.putExtra("playerName", playerName);

@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
 
         findViews();
 
-        //this.crashSound = new CrashSound(this);/////////////////////////////////////////////////////////////////
+        this.crashSound = new CrashSound(this);
 
         Intent intent = getIntent();
         this.PlayerName = intent.getStringExtra("playerName");
@@ -167,9 +167,8 @@ public class GameActivity extends AppCompatActivity {
 
     void collisionCheck() {
         if(gameManager.getCollision()) {
-            SignalManager.getInstance().vibrate(LONG_VIBRATE);
             SignalManager.getInstance().toast("COLLISION!!!");
-            //crashSound.playSound();/////////////////////////////////////////////////////////////////////////
+            crashSound.playSound();
             updateLives();
         }
     }

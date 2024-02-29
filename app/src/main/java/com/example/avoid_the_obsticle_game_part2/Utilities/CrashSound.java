@@ -24,7 +24,7 @@ public class CrashSound {
 
     public void playSound(){
         executor.execute(() ->{
-            //mediaPlayer = MediaPlayer.create(context, R.raw.crashSound);
+            mediaPlayer = MediaPlayer.create(context, R.raw.crashsound);
             mediaPlayer.setLooping(false);
             mediaPlayer.start();
         });
