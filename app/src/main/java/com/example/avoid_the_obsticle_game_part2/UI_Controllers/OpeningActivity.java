@@ -100,13 +100,12 @@ public class OpeningActivity extends AppCompatActivity {
         SignalManager.getInstance().vibrate(SMALL_VIBRATE);
         String playerName = opening_LBL_name.getText().toString();
 
-
         location = permissionsManager.getLast_location();
 
         if(location == null) {
             location = new Location("");
-            location.setLatitude(40.730610);
-            location.setLongitude(-73.935242);
+            location.setLatitude(32.114167);
+            location.setLongitude(34.796944);
         }
 
         Log.d("a123", location + "");
