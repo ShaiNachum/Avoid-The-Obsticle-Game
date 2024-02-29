@@ -1,26 +1,23 @@
 package com.example.avoid_the_obsticle_game_part2.UI_Controllers;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.avoid_the_obsticle_game_part2.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.textview.MaterialTextView;
 
 
 public class MapFragment extends Fragment {
-
     private GoogleMap mMap;
-
-    //private MaterialTextView map_LBL_title;
 
 
     @NonNull
@@ -46,9 +43,10 @@ public class MapFragment extends Fragment {
 
     }
 
-
-
-//    public void zoom(double lat, double lon){
-//        map_LBL_title.setText(lat + "\n" + lon);
-//    }
+    public void zoom(double lat, double lon){
+        LatLng location = new LatLng(lat,lon);
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(location));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+    }
 }

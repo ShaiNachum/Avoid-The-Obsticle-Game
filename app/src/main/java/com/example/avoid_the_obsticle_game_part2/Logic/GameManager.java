@@ -1,5 +1,6 @@
 package com.example.avoid_the_obsticle_game_part2.Logic;
 
+import android.location.Location;
 import android.util.Log;
 import com.example.avoid_the_obsticle_game_part2.Models.Game;
 import com.example.avoid_the_obsticle_game_part2.Utilities.SharedPreferencesManager;
@@ -31,9 +32,12 @@ public class GameManager {
     private Game game;
     private boolean isGameOn;
     private RecordsManager fromSP;
+    private Location location;
 
 
-    public GameManager(int life, String name) {
+    public GameManager(int life, String name, Location location) {
+        this.location = location;
+
         this.life = life;
 
         this.playerName = name;
@@ -192,6 +196,8 @@ public class GameManager {
     private void endGame(){
         game.setScore(this.score);
         game.setPlayerName(this.playerName);
+        game.setLat(this.location.getLatitude());
+        game.setLon(this.location.getLongitude());
 
         if(fromSP == null)
             fromSP = new RecordsManager();

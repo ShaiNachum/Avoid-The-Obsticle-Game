@@ -38,7 +38,6 @@ public class ListFragment extends Fragment {
         this.callbackBackToOpeningClicked = callbackBackToOpeningClicked;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,26 +47,19 @@ public class ListFragment extends Fragment {
         findViews(view);
         initViews();
 
-        //list_LBL_send.setOnClickListener(v -> itemClicked(23.23423, 76.42344));
-
         list_BTN_backToOpening.setOnClickListener(v -> backToOpeningClicked());
 
         return view;
     }
-
 
     private void backToOpeningClicked() {
         if(callbackBackToOpeningClicked != null)
             callbackBackToOpeningClicked.backToOpeningClicked();
     }
 
-    private void itemClicked(double lat, double lon) {
-        if(callbackHighScoreClicked != null)
-            callbackHighScoreClicked.highScoreClicked(lat, lon);
-    }
-
     private void initViews() {
         GameAdapter gameAdapter = new GameAdapter(this.getContext(), RecordsManager.getGamesArrayList());
+        gameAdapter.setCallbackHighScoreClicked(callbackHighScoreClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         main_LST_games.setLayoutManager(linearLayoutManager);

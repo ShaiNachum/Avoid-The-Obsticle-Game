@@ -7,8 +7,8 @@ import java.util.Comparator;
 public class Game {
     private String playerName = "";
     private int score = 0;
-    private double lat;
-    private double lon;
+    private double lat = 0.0;
+    private double lon = 0.0;
 
 
     public Game(){

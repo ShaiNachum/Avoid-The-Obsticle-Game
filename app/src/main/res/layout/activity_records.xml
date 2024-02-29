@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/space"
     tools:context=".UI_Controllers.RecordsActivity">
 
 
@@ -18,6 +19,7 @@
     <FrameLayout
         android:id="@+id/records_FRAME_map"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_default"
         android:layout_height="0dp"
         android:layout_weight="1">
 

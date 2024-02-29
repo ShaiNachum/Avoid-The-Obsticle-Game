@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.avoid_the_obsticle_game_part2.Interfaces.GameCallback;
+import com.example.avoid_the_obsticle_game_part2.Interfaces.Callback_highScoreClicked;
 import com.example.avoid_the_obsticle_game_part2.Models.Game;
 import com.example.avoid_the_obsticle_game_part2.R;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -19,15 +19,15 @@ import java.util.ArrayList;
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
     private Context context;
     private ArrayList<Game> games;
-    private GameCallback gameCallback;
+    private Callback_highScoreClicked callbackHighScoreClicked;
 
     public GameAdapter(Context context, ArrayList<Game> games) {
         this.context = context;
         this.games = games;
     }
 
-    public GameAdapter setGameCallback(GameCallback gameCallback) {
-        this.gameCallback = gameCallback;
+    public GameAdapter setCallbackHighScoreClicked(Callback_highScoreClicked callbackHighScoreClicked) {
+        this.callbackHighScoreClicked = callbackHighScoreClicked;
         return this;
     }
 
@@ -60,13 +60,18 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         private MaterialTextView game_LBL_playerName;
         private MaterialTextView game_LBL_playerScore;
         private MaterialTextView game_LBL_playerPlace;
-
+        private ShapeableImageView game_BTN_location;
 
         public GameViewHolder(@NonNull View itemView) {
             super(itemView);
             game_LBL_playerName = itemView.findViewById(R.id.game_LBL_playerName);
             game_LBL_playerScore = itemView.findViewById(R.id.game_LBL_playerScore);
             game_LBL_playerPlace = itemView.findViewById(R.id.game_LBL_playerPlace);
+            game_BTN_location = itemView.findViewById(R.id.game_BTN_location);
+            game_BTN_location.setOnClickListener(v -> {
+                if(callbackHighScoreClicked != null)
+                    callbackHighScoreClicked.highScoreClicked(games.get(getAdapterPosition()).getLat(), games.get(getAdapterPosition()).getLon());
+            });
         }
     }
 }

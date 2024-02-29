@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -49,6 +50,7 @@ public class GameActivity extends AppCompatActivity {
     private String PlayerName;
     private StepDetector stepDetector;
     private CrashSound crashSound;
+    private Location location;
 
 
     @Override
@@ -64,6 +66,7 @@ public class GameActivity extends AppCompatActivity {
         this.PlayerName = intent.getStringExtra("playerName");
         this.isFast = intent.getBooleanExtra("gameSpeed", false);
         this.tiltMode = intent.getBooleanExtra("tiltMode", false);
+        this.location = getIntent().getParcelableExtra("location");
 
         if(tiltMode)
             initStepDetector();
@@ -72,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
             main_BTN_left.setOnClickListener(View -> leftMove());
         }
 
-        gameManager = new GameManager(main_IMG_hearts.length, this.PlayerName);
+        gameManager = new GameManager(main_IMG_hearts.length, this.PlayerName, this.location);
 
         updateSpaceshipsUI();
 

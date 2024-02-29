@@ -26,7 +26,7 @@ public class RecordsActivity extends AppCompatActivity {
         listFragment.setCallbackHighScoreClicked(new Callback_highScoreClicked() {
             @Override
             public void highScoreClicked(double lat, double lon) {
-                //mapFragment.zoom(lat, lon);
+                mapFragment.zoom(lat, lon);
             }
         });
 
