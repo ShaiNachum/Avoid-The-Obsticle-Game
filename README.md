@@ -63,3 +63,9 @@
   * Lottie Animations.
   * Constraint Layout.
   * Design and Default/Night Mode.
+
+### Video Example:
+    
+[my_game_vid.zip](https://github.com/ShaiNachum/avoid_the_obsticle_game_part2/files/14466150/my_game_vid.zip)
+
+
