@@ -24,17 +24,42 @@
       * It must be done in two different fragments - a screen containing a list containing the ten highest records since the game was installed and the locations where the records were recorded in the table, clicking on a record will update the map location display accordingly.
 
 ### Subject That This Project Deal With:
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-
-
-
-
-## Video Example:
-
+  * Activity Lifecycle.
+  * TextViews.
+  * ImageViews.
+  * ImageViews.
+  * RelativeLayout.
+  * LinearLayout.
+  * Material.
+  * Resource Files - Strings, dimens, colors.
+  * Buttons.
+  * Data Models – builder Design Pattern.
+  * JavaBeans.
+  * Business Logic - Encapsulation, Code Layering.
+  * Multiple activities.
+  * Manifest.
+  * Intents.
+  * Passing data between Activities.
+  * Gradle - Libraries implementations.
+  * Glide - Loading External Source Images.
+  * Vibrations.
+  * LinearLayout - Layout Weights.
+  * Toasts.
+  * FAB - Floating Action Button.
+  * Timers - Handler + Runnable, Timer + TimerTask, CountDownTimer, WorkManager.
+  * SharedPreferences.
+  * Singleton DP.
+  * Signal Manager.
+  * Gson + Json.
+  * Fragments.
+  * Callbacks.
+  * Icons.
+  * Sensors.
+  * Sounds.
+  * RecyclerView, RecyclerView Adapter, RecyclerView ViewHolder.
+  * Callbacks.
+  * Splash Screen.
+  * Animations.
+  * Lottie Animations.
+  * Constraint Layout.
+  * Design and Default/Night Mode.
