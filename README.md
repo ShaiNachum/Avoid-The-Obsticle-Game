@@ -1,4 +1,4 @@
-# avoid_the_obsticle_game_part_2
+# Avoid The Obsticle Game
 
 ## This Project Made During "Android Development" Course.
 
